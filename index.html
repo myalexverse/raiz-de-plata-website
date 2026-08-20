@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- SEO Meta Tags -->
+    <title>Raíz de Plata | Vinos Premium de Zacatecas — Tradición • Arte • Cultura</title>
+    <meta name="description" content="Descubre Raíz de Plata, bodega artesanal de Jerez, Zacatecas. Vinos premium mexicanos elaborados con respeto por la tierra y la tradición vitivinícola. Visita nuestra selección de blancos, rosados, tintos y cosecha tardía.">
+    <meta name="keywords" content="vinos mexicanos, vino zacatecas, raíz de plata, de haro, vino artesanal, bodega mexicana, vino premium, jerez zacatecas">
+    <meta name="author" content="Raíz de Plata - De Haro">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Raíz de Plata | Vinos Premium de Zacatecas">
+    <meta property="og:description" content="Bodega artesanal que honra la tradición vitivinícola. Vinos premium de Zacatecas, México.">
+    <meta property="og:image" content="images/hero-vineyard.jpg">
+    <meta property="og:url" content="https://www.raizdeplata.com">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_MX">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/logo-escudo.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- AGE GATE - Verificación de Edad             -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div id="age-gate" class="age-gate" role="dialog" aria-modal="true" aria-labelledby="age-gate-title">
+        <div class="age-gate__overlay"></div>
+        <div class="age-gate__modal">
+            <div class="age-gate__badge">Acceso Restringido</div>
+            <div class="age-gate__logo">
+                <img src="images/logo-combined-gold.png?v=2" alt="Raíz de Plata - De Haro" id="age-gate-logo">
+            </div>
+            <div class="age-gate__divider"></div>
+            <h2 class="age-gate__title" id="age-gate-title">Bienvenido a Raíz de Plata</h2>
+            <p class="age-gate__text">Para ingresar a nuestro sitio web debes tener la edad legal para el consumo de bebidas alcohólicas en tu país de residencia.</p>
+            <p class="age-gate__question">¿Tienes al menos 18 años de edad?</p>
+            <div class="age-gate__buttons">
+                <button id="age-yes" class="btn btn--primary btn--lg">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right:6px;"><polyline points="20 6 9 17 4 12"/></svg>
+                    Sí, soy mayor de edad
+                </button>
+                <button id="age-no" class="btn btn--outline btn--lg">No, salir</button>
+            </div>
+            <div class="age-gate__error" id="age-gate-error" style="display:none;">
+                <p>Debes ser mayor de edad para ingresar a este sitio web.</p>
+            </div>
+            <p class="age-gate__disclaimer">El abuso en el consumo de bebidas alcohólicas es nocivo para la salud. Prohibida la venta a menores de 18 años.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NAVIGATION                                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar__container">
+            <a href="#hero" class="navbar__logo">
+                <img src="images/logo-escudo-gold.png?v=2" alt="De Haro" class="navbar__logo-img">
+                <span class="navbar__brand">Raíz de Plata</span>
+            </a>
+
+            <ul class="nav-menu" id="nav-menu">
+
+                <li class="nav-menu__item">
+                    <a href="#historia" class="nav-menu__link">Nuestra Historia</a>
+                </li>
+                <li class="nav-menu__item">
+                    <a href="#vinos" class="nav-menu__link">Vinos</a>
+                </li>
+                <li class="nav-menu__item">
+                    <a href="#vinedos" class="nav-menu__link">Viñedos</a>
+                </li>
+                <li class="nav-menu__item">
+                    <a href="#experiencia" class="nav-menu__link">Experiencia</a>
+                </li>
+                <li class="nav-menu__item">
+                    <a href="#contacto" class="nav-menu__link">Contacto</a>
+                </li>
+            </ul>
+
+            <div class="navbar__actions">
+                <button class="navbar__cart" id="cart-btn" aria-label="Carrito de compras">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                        <line x1="3" y1="6" x2="21" y2="6"/>
+                        <path d="M16 10a4 4 0 01-8 0"/>
+                    </svg>
+                    <span class="navbar__cart-count" id="cart-count">0</span>
+                </button>
+                <a href="https://wa.me/524941044143" target="_blank" class="btn btn--whatsapp btn--sm" aria-label="Contactar por WhatsApp">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                    </svg>
+                    <span class="btn__text-desktop">WhatsApp</span>
+                </a>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Menú de navegación">
+                    <span class="nav-toggle__bar"></span>
+                    <span class="nav-toggle__bar"></span>
+                    <span class="nav-toggle__bar"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- HERO SECTION                                -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="hero" class="hero">
+        <div class="hero__bg" style="background-image: url('images/hero-vineyard.jpg');"></div>
+        <div class="hero__overlay"></div>
+        <div class="hero__content">
+            <div class="hero__logo animate-on-scroll">
+                <img src="images/logo-text-white.png?v=2" alt="Raíz de Plata" class="hero__logo-img">
+            </div>
+
+            <p class="hero__subtitle animate-on-scroll" data-delay="600">Vinos premium artesanales desde el corazón de Zacatecas</p>
+            <div class="hero__cta animate-on-scroll" data-delay="800">
+                <a href="#vinos" class="btn btn--primary btn--lg">Explorar Nuestra Selección</a>
+                <a href="#experiencia" class="btn btn--outline btn--lg">Visítanos</a>
+            </div>
+        </div>
+        <div class="hero__scroll-indicator">
+            <span>Descubre</span>
+            <div class="hero__scroll-arrow">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 5v14M19 12l-7 7-7-7"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- NUESTRA HISTORIA                            -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="historia" class="section historia">
+        <div class="container">
+            <div class="historia__grid">
+                <div class="historia__content animate-on-scroll">
+                    <span class="section__label">Nuestra Historia</span>
+                    <h2 class="section__title">Una bodega que honra la tradición vitivinícola</h2>
+                    <div class="section__divider"></div>
+                    <p class="historia__quote">
+                        "A través del respeto por la tierra, el arte del vino y la expresión auténtica de cada uva, 
+                        hemos creado una selección cuidadosamente curada para ofrecer una experiencia que transita 
+                        de la frescura a la complejidad, culminando en un final memorable."
+                    </p>
+                    <p class="historia__text">
+                        Desde los valles de Jerez, Zacatecas, Raíz de Plata nace del sueño de compartir con el mundo 
+                        la riqueza vitivinícola de nuestra tierra. Cada botella es el reflejo de un terroir único, 
+                        donde el sol generoso, el suelo mineral y la tradición centenaria se combinan para crear 
+                        vinos de carácter excepcional.
+                    </p>
+                    <p class="historia__text">
+                        Nuestros viñedos, ubicados en las regiones de Fresnillo y Luis Moya, capturan la esencia 
+                        de Zacatecas en cada racimo. Trabajamos con variedades selectas — Semillón, Syrah, Cariñan, 
+                        Tempranillo, Nebbiolo, Cabernet Sauvignon y Sauvignon Blanc — creando vinos que honran 
+                        tanto la tradición como la innovación.
+                    </p>
+                    <div class="historia__stats">
+                        <div class="stat">
+                            <span class="stat__number" data-count="6">0</span>
+                            <span class="stat__label">Variedades</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat__number" data-count="2">0</span>
+                            <span class="stat__label">Viñedos</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat__number" data-count="7">0</span>
+                            <span class="stat__label">Varietales</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="historia__image-wrapper animate-on-scroll slide-in-right">
+                    <div class="historia__image">
+                        <img src="images/tasting-experience.jpg" alt="Experiencia de cata en Raíz de Plata" loading="lazy">
+                    </div>
+                    <div class="historia__image-accent"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SELECCIÓN DE VINOS                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="vinos" class="section vinos">
+        <div class="container">
+            <div class="section__header animate-on-scroll">
+                <span class="section__label">Selección 2026</span>
+                <h2 class="section__title">Nuestros Vinos</h2>
+                <div class="section__divider"></div>
+                <p class="section__subtitle">Cada etiqueta es una expresión única de nuestro terroir zacatecano</p>
+            </div>
+
+            <!-- Filtros -->
+            <div class="vinos__filters animate-on-scroll" data-delay="200">
+                <button class="filter-btn active" data-filter="todos">Todos</button>
+                <button class="filter-btn" data-filter="blanco">
+                    <span class="filter-btn__dot wine-white"></span>Blancos
+                </button>
+                <button class="filter-btn" data-filter="rosado">
+                    <span class="filter-btn__dot wine-rose"></span>Rosados
+                </button>
+                <button class="filter-btn" data-filter="tinto">
+                    <span class="filter-btn__dot wine-red"></span>Tintos
+                </button>
+                <button class="filter-btn" data-filter="dulce">
+                    <span class="filter-btn__dot wine-sweet"></span>Dulces
+                </button>
+            </div>
+
+            <!-- Grid de Productos -->
+            <div class="products-grid" id="products-grid">
+
+                <!-- Semillón 2023 -->
+                <div class="product-card animate-on-scroll" data-type="blanco" data-id="1">
+                    <div class="product-card__image-wrapper">
+                        <span class="product-card__badge wine-white">Blanco</span>
+                        <img src="images/wine-semillon.jpg" alt="Semillón 2023" class="product-card__image" loading="lazy">
+                        <div class="product-card__overlay">
+                            <button class="btn btn--primary btn--sm product-card__details-btn" data-wine-id="1">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="product-card__info">
+                        <span class="product-card__vineyard">Viñedo Martínez • Fresnillo</span>
+                        <h3 class="product-card__name">Semillón 2023</h3>
+                        <p class="product-card__varietal">100% Semillón</p>
+                        <div class="product-card__bottom">
+                            <span class="product-card__price">$450 <small>MXN</small></span>
+                            <button class="btn btn--outline btn--xs add-to-cart-btn" data-wine-id="1">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                                </svg>
+                                Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rosé 2023 -->
+                <div class="product-card animate-on-scroll" data-type="rosado" data-id="2" data-delay="100">
+                    <div class="product-card__image-wrapper">
+                        <span class="product-card__badge wine-rose">Rosado</span>
+                        <img src="images/wine-rose.jpg" alt="Rosé 2023" class="product-card__image" loading="lazy">
+                        <div class="product-card__overlay">
+                            <button class="btn btn--primary btn--sm product-card__details-btn" data-wine-id="2">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="product-card__info">
+                        <span class="product-card__vineyard">Viñedo Martínez / Valle de Barranquillas</span>
+                        <h3 class="product-card__name">Rosé 2023</h3>
+                        <p class="product-card__varietal">56% Syrah · 44% Cariñan</p>
+                        <div class="product-card__bottom">
+                            <span class="product-card__price">$420 <small>MXN</small></span>
+                            <button class="btn btn--outline btn--xs add-to-cart-btn" data-wine-id="2">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                                </svg>
+                                Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- L.V.O. 2022 -->
+                <div class="product-card animate-on-scroll" data-type="tinto" data-id="3" data-delay="200">
+                    <div class="product-card__image-wrapper">
+                        <span class="product-card__badge wine-red">Tinto</span>
+                        <img src="images/wine-lvo.jpg" alt="L.V.O. 2022" class="product-card__image" loading="lazy">
+                        <div class="product-card__overlay">
+                            <button class="btn btn--primary btn--sm product-card__details-btn" data-wine-id="3">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="product-card__info">
+                        <span class="product-card__vineyard">Valle de Barranquillas • Luis Moya</span>
+                        <h3 class="product-card__name">L.V.O. 2022</h3>
+                        <p class="product-card__varietal">40% Tempranillo · 40% Cariñan · 20% Nebbiolo</p>
+                        <div class="product-card__bottom">
+                            <span class="product-card__price">$580 <small>MXN</small></span>
+                            <button class="btn btn--outline btn--xs add-to-cart-btn" data-wine-id="3">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                                </svg>
+                                Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Syrah 2021 -->
+                <div class="product-card animate-on-scroll" data-type="tinto" data-id="4" data-delay="100">
+                    <div class="product-card__image-wrapper">
+                        <span class="product-card__badge wine-red">Tinto</span>
+                        <img src="images/wine-syrah.jpg" alt="Syrah 2021" class="product-card__image" loading="lazy">
+                        <div class="product-card__overlay">
+                            <button class="btn btn--primary btn--sm product-card__details-btn" data-wine-id="4">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="product-card__info">
+                        <span class="product-card__vineyard">Valle de Barranquillas • Luis Moya</span>
+                        <h3 class="product-card__name">Syrah 2021</h3>
+                        <p class="product-card__varietal">100% Syrah</p>
+                        <div class="product-card__bottom">
+                            <span class="product-card__price">$650 <small>MXN</small></span>
+                            <button class="btn btn--outline btn--xs add-to-cart-btn" data-wine-id="4">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                                </svg>
+                                Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cabernet Sauvignon 2020 -->
+                <div class="product-card animate-on-scroll" data-type="tinto" data-id="5" data-delay="200">
+                    <div class="product-card__image-wrapper">
+                        <span class="product-card__badge wine-red">Tinto</span>
+                        <span class="product-card__badge-special">★ Guarda</span>
+                        <img src="images/wine-cabernet.jpg" alt="Cabernet Sauvignon 2020" class="product-card__image" loading="lazy">
+                        <div class="product-card__overlay">
+                            <button class="btn btn--primary btn--sm product-card__details-btn" data-wine-id="5">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="product-card__info">
+                        <span class="product-card__vineyard">Valle de Barranquillas • Luis Moya</span>
+                        <h3 class="product-card__name">Cabernet Sauvignon 2020</h3>
+                        <p class="product-card__varietal">100% Cabernet Sauvignon</p>
+                        <div class="product-card__bottom">
+                            <span class="product-card__price">$750 <small>MXN</small></span>
+                            <button class="btn btn--outline btn--xs add-to-cart-btn" data-wine-id="5">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                                </svg>
+                                Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cosecha Tardía 2024 -->
+                <div class="product-card animate-on-scroll" data-type="dulce" data-id="6" data-delay="300">
+                    <div class="product-card__image-wrapper">
+                        <span class="product-card__badge wine-sweet">Cosecha Tardía</span>
+                        <img src="images/wine-cosecha-tardia.jpg" alt="Cosecha Tardía 2024" class="product-card__image" loading="lazy">
+                        <div class="product-card__overlay">
+                            <button class="btn btn--primary btn--sm product-card__details-btn" data-wine-id="6">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="product-card__info">
+                        <span class="product-card__vineyard">Valle de Barranquillas • Luis Moya</span>
+                        <h3 class="product-card__name">Cosecha Tardía 2024</h3>
+                        <p class="product-card__varietal">70% Sauvignon Blanc · 30% Semillón</p>
+                        <div class="product-card__bottom">
+                            <span class="product-card__price">$520 <small>MXN</small></span>
+                            <button class="btn btn--outline btn--xs add-to-cart-btn" data-wine-id="6">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                                </svg>
+                                Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PRODUCT DETAIL MODAL                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div id="product-modal" class="modal">
+        <div class="modal__overlay"></div>
+        <div class="modal__content">
+            <button class="modal__close" id="modal-close" aria-label="Cerrar">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+            <div class="modal__grid">
+                <div class="modal__image-wrapper">
+                    <img src="" alt="" class="modal__image" id="modal-image">
+                </div>
+                <div class="modal__info">
+                    <div class="modal__badge" id="modal-badge"></div>
+                    <h2 class="modal__name" id="modal-name"></h2>
+                    <p class="modal__varietal" id="modal-varietal"></p>
+
+                    <div class="modal__specs">
+                        <div class="modal__spec">
+                            <span class="modal__spec-label">Añada</span>
+                            <span class="modal__spec-value" id="modal-vintage"></span>
+                        </div>
+                        <div class="modal__spec">
+                            <span class="modal__spec-label">Alcohol</span>
+                            <span class="modal__spec-value" id="modal-alcohol"></span>
+                        </div>
+                        <div class="modal__spec" id="modal-aging-wrapper">
+                            <span class="modal__spec-label">Crianza</span>
+                            <span class="modal__spec-value" id="modal-aging"></span>
+                        </div>
+                        <div class="modal__spec">
+                            <span class="modal__spec-label">Viñedo</span>
+                            <span class="modal__spec-value" id="modal-vineyard"></span>
+                        </div>
+                    </div>
+
+                    <div class="modal__section">
+                        <h3 class="modal__section-title">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                            Notas de Cata
+                        </h3>
+                        <p class="modal__section-text" id="modal-tasting"></p>
+                    </div>
+
+                    <div class="modal__section">
+                        <h3 class="modal__section-title">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                            Maridaje Sugerido
+                        </h3>
+                        <p class="modal__section-text" id="modal-pairing"></p>
+                    </div>
+
+                    <div class="modal__special-note" id="modal-special-note" style="display:none;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <span id="modal-special-text"></span>
+                    </div>
+
+                    <div class="modal__purchase">
+                        <span class="modal__price" id="modal-price"></span>
+                        <button class="btn btn--primary btn--lg modal__add-cart" id="modal-add-cart">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                                <line x1="3" y1="6" x2="21" y2="6"/>
+                                <path d="M16 10a4 4 0 01-8 0"/>
+                            </svg>
+                            Agregar al Carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- CART SIDEBAR                                -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-sidebar__overlay"></div>
+        <div class="cart-sidebar__panel">
+            <div class="cart-sidebar__header">
+                <h3 class="cart-sidebar__title">Tu Carrito</h3>
+                <button class="cart-sidebar__close" id="cart-close" aria-label="Cerrar carrito">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="cart-sidebar__items" id="cart-items">
+                <div class="cart-sidebar__empty" id="cart-empty">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                        <line x1="3" y1="6" x2="21" y2="6"/>
+                        <path d="M16 10a4 4 0 01-8 0"/>
+                    </svg>
+                    <p>Tu carrito está vacío</p>
+                    <a href="#vinos" class="btn btn--outline btn--sm">Explorar Vinos</a>
+                </div>
+            </div>
+            <div class="cart-sidebar__footer" id="cart-footer" style="display:none;">
+                <div class="cart-sidebar__total">
+                    <span>Subtotal</span>
+                    <span class="cart-sidebar__total-price" id="cart-total">$0 MXN</span>
+                </div>
+                <button class="btn btn--primary btn--lg cart-sidebar__checkout" id="cart-checkout">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                    </svg>
+                    Pedir por WhatsApp
+                </button>
+                <p class="cart-sidebar__note">Tu pedido será enviado por WhatsApp para confirmación</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- VIÑEDOS                                     -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="vinedos" class="section vinedos">
+        <div class="vinedos__bg" style="background-image: url('images/vineyard-landscape.jpg');"></div>
+        <div class="vinedos__overlay"></div>
+        <div class="container vinedos__content">
+            <div class="section__header animate-on-scroll">
+                <span class="section__label section__label--light">Nuestro Terroir</span>
+                <h2 class="section__title section__title--light">Viñedos de Zacatecas</h2>
+                <div class="section__divider"></div>
+                <p class="section__subtitle section__subtitle--light">Donde el sol, el suelo y la altitud crean un terroir único en México</p>
+            </div>
+            <div class="vinedos__grid">
+                <div class="vinedo-card animate-on-scroll" data-delay="200">
+                    <div class="vinedo-card__icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h3 class="vinedo-card__name">Viñedo Martínez</h3>
+                    <p class="vinedo-card__location">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Fresnillo, Zacatecas
+                    </p>
+                    <p class="vinedo-card__desc">Ubicado en el corazón de Fresnillo, este viñedo se distingue por sus suelos minerales y su microclima ideal para variedades blancas y rosadas. Aquí nacen nuestro Semillón y parte de nuestro Rosé.</p>
+                    <div class="vinedo-card__grapes">
+                        <span class="vinedo-card__grape">Semillón</span>
+                        <span class="vinedo-card__grape">Syrah</span>
+                        <span class="vinedo-card__grape">Cariñan</span>
+                    </div>
+                </div>
+                <div class="vinedo-card animate-on-scroll" data-delay="400">
+                    <div class="vinedo-card__icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h3 class="vinedo-card__name">Viñedo Valle de Barranquillas</h3>
+                    <p class="vinedo-card__location">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Luis Moya, Zacatecas
+                    </p>
+                    <p class="vinedo-card__desc">En el valle de Barranquillas, la altitud y la amplitud térmica crean condiciones excepcionales para tintos de gran estructura. Hogar de nuestros Syrah, Cabernet Sauvignon, Nebbiolo y nuestro blend L.V.O.</p>
+                    <div class="vinedo-card__grapes">
+                        <span class="vinedo-card__grape">Tempranillo</span>
+                        <span class="vinedo-card__grape">Nebbiolo</span>
+                        <span class="vinedo-card__grape">Cabernet Sauvignon</span>
+                        <span class="vinedo-card__grape">Syrah</span>
+                        <span class="vinedo-card__grape">Sauvignon Blanc</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EXPERIENCIA                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="experiencia" class="section experiencia">
+        <div class="container">
+            <div class="experiencia__grid">
+                <div class="experiencia__image-wrapper animate-on-scroll slide-in-left">
+                    <div class="experiencia__image">
+                        <img src="images/tasting-experience.jpg" alt="Experiencia de cata en la bodega" loading="lazy">
+                    </div>
+                    <div class="experiencia__image-accent"></div>
+                </div>
+                <div class="experiencia__content animate-on-scroll">
+                    <span class="section__label">Vive la Experiencia</span>
+                    <h2 class="section__title">Visita Nuestra Bodega</h2>
+                    <div class="section__divider"></div>
+                    <p class="experiencia__text">
+                        Te invitamos a conocer nuestra bodega en Jerez, Zacatecas. Vive una experiencia inmersiva 
+                        donde podrás recorrer nuestras instalaciones, conocer el proceso de elaboración artesanal 
+                        y degustar nuestra selección completa de vinos.
+                    </p>
+
+                    <div class="experiencia__cards">
+                        <div class="experiencia__card">
+                            <div class="experiencia__card-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                            </div>
+                            <div class="experiencia__card-content">
+                                <h4>Horario de Visita</h4>
+                                <p>Jueves a Domingo</p>
+                                <p><strong>11:00 AM — 5:00 PM</strong></p>
+                            </div>
+                        </div>
+                        <div class="experiencia__card">
+                            <div class="experiencia__card-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                                </svg>
+                            </div>
+                            <div class="experiencia__card-content">
+                                <h4>Eventos Privados</h4>
+                                <p>Todos los días</p>
+                                <p><strong>Con reservación previa</strong></p>
+                            </div>
+                        </div>
+                        <div class="experiencia__card">
+                            <div class="experiencia__card-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+                                </svg>
+                            </div>
+                            <div class="experiencia__card-content">
+                                <h4>Ubicación</h4>
+                                <p>Del Roble 6, Los Haro</p>
+                                <p><strong>Jerez, Zac. C.P. 99447</strong></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="experiencia__cta">
+                        <a href="https://wa.me/524941044143?text=Hola%2C%20me%20gustaría%20reservar%20una%20visita%20a%20la%20bodega." target="_blank" class="btn btn--primary btn--lg">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                            Reservar Visita
+                        </a>
+                        <a href="tel:+524941044143" class="btn btn--outline btn--lg">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                            </svg>
+                            Llamar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- CONTACTO                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="contacto" class="section contacto">
+        <div class="container">
+            <div class="section__header animate-on-scroll">
+                <span class="section__label">Contáctanos</span>
+                <h2 class="section__title">Estamos para Ti</h2>
+                <div class="section__divider"></div>
+                <p class="section__subtitle">¿Tienes alguna pregunta? Nos encantará atenderte</p>
+            </div>
+
+            <div class="contacto__grid">
+                <div class="contacto__info animate-on-scroll">
+                    <div class="contacto__card">
+                        <div class="contacto__card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Dirección</h4>
+                            <p>Del Roble 6, Los Haro<br>Jerez, Zac. C.P. 99447</p>
+                        </div>
+                    </div>
+                    <div class="contacto__card">
+                        <div class="contacto__card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Teléfono</h4>
+                            <p><a href="tel:+524941044143">494 104 4143</a></p>
+                        </div>
+                    </div>
+                    <div class="contacto__card">
+                        <div class="contacto__card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Horarios</h4>
+                            <p>Jueves a Domingo<br>11:00 AM — 5:00 PM</p>
+                        </div>
+                    </div>
+
+                    <!-- Google Maps Embed -->
+                    <div class="contacto__map">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3649.5!2d-103.0!3d22.6!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDM2JzAwLjAiTiAxMDPCsDAwJzAwLjAiVw!5e0!3m2!1ses!2smx!4v1" 
+                            width="100%" 
+                            height="250" 
+                            style="border:0; border-radius: 12px;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Ubicación de Raíz de Plata">
+                        </iframe>
+                    </div>
+                </div>
+
+                <div class="contacto__form-wrapper animate-on-scroll slide-in-right">
+                    <form id="contact-form" class="contacto__form">
+                        <div class="form-group">
+                            <label for="contact-name">Nombre completo</label>
+                            <input type="text" id="contact-name" name="name" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-email">Correo electrónico</label>
+                            <input type="email" id="contact-email" name="email" placeholder="tu@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-phone">Teléfono</label>
+                            <input type="tel" id="contact-phone" name="phone" placeholder="Tu número de teléfono">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-subject">Asunto</label>
+                            <select id="contact-subject" name="subject">
+                                <option value="">Selecciona un asunto</option>
+                                <option value="pedido">Realizar un pedido</option>
+                                <option value="visita">Reservar una visita</option>
+                                <option value="evento">Evento privado</option>
+                                <option value="informacion">Información general</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-message">Mensaje</label>
+                            <textarea id="contact-message" name="message" rows="5" placeholder="Escribe tu mensaje..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--lg btn--full">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                            </svg>
+                            Enviar Mensaje
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- FOOTER                                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <img src="images/logo-combined-gold.png?v=2" alt="Raíz de Plata - De Haro" class="footer__logo">
+                    <p class="footer__desc">
+                        Una bodega que honra la tradición vitivinícola a través del respeto por la tierra, 
+                        el arte del vino y la expresión auténtica de cada uva.
+                    </p>
+                    <div class="footer__social">
+                        <a href="#" class="footer__social-link" aria-label="Facebook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                        </a>
+                        <a href="#" class="footer__social-link" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                        <a href="https://wa.me/524941044143" class="footer__social-link" aria-label="WhatsApp">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer__nav">
+                    <h4 class="footer__heading">Navegación</h4>
+                    <ul class="footer__links">
+                        <li><a href="#hero">Inicio</a></li>
+                        <li><a href="#historia">Nuestra Historia</a></li>
+                        <li><a href="#vinos">Vinos</a></li>
+                        <li><a href="#vinedos">Viñedos</a></li>
+                        <li><a href="#experiencia">Experiencia</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__nav">
+                    <h4 class="footer__heading">Nuestros Vinos</h4>
+                    <ul class="footer__links footer__wine-links">
+                        <li><a href="#" class="footer__wine-link" data-wine-id="1"><span class="filter-btn__dot wine-white"></span>Semillón 2023</a></li>
+                        <li><a href="#" class="footer__wine-link" data-wine-id="2"><span class="filter-btn__dot wine-rose"></span>Rosé 2023</a></li>
+                        <li><a href="#" class="footer__wine-link" data-wine-id="3"><span class="filter-btn__dot wine-red"></span>L.V.O. 2022</a></li>
+                        <li><a href="#" class="footer__wine-link" data-wine-id="4"><span class="filter-btn__dot wine-red"></span>Syrah 2021</a></li>
+                        <li><a href="#" class="footer__wine-link" data-wine-id="5"><span class="filter-btn__dot wine-red"></span>Cabernet Sauvignon 2020</a></li>
+                        <li><a href="#" class="footer__wine-link" data-wine-id="6"><span class="filter-btn__dot wine-sweet"></span>Cosecha Tardía 2024</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__contact">
+                    <h4 class="footer__heading">Contacto</h4>
+                    <ul class="footer__contact-list">
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            Del Roble 6, Los Haro<br>Jerez, Zac. C.P. 99447
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                            <a href="tel:+524941044143">494 104 4143</a>
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            Jue — Dom: 11am — 5pm
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <p class="footer__copyright">&copy; 2026 Raíz de Plata — De Haro. Todos los derechos reservados.</p>
+                <p class="footer__legal">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    Bebe con moderación. El abuso en el consumo de bebidas alcohólicas es nocivo para la salud. Prohibida la venta a menores de 18 años.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- WHATSAPP FLOATING BUTTON                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <a href="https://wa.me/524941044143?text=Hola%2C%20me%20interesa%20conocer%20más%20sobre%20sus%20vinos." 
+       target="_blank" 
+       class="whatsapp-float" 
+       id="whatsapp-float"
+       aria-label="Contactar por WhatsApp">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        <span class="whatsapp-float__tooltip">¿Necesitas ayuda?</span>
+    </a>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- BACK TO TOP BUTTON                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <button class="back-to-top" id="back-to-top" aria-label="Volver arriba">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="18 15 12 9 6 15"/>
+        </svg>
+    </button>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
+</html>
