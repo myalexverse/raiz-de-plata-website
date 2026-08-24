@@ -165,22 +165,35 @@ function initMobileNav() {
   const menu = document.getElementById('nav-menu');
   if (!toggle || !menu) return;
 
+  function closeMenu() {
+    toggle.classList.remove('active');
+    menu.classList.remove('active');
+    document.body.classList.remove('nav-open');
+  }
+
+  function openMenu() {
+    toggle.classList.add('active');
+    menu.classList.add('active');
+    document.body.classList.add('nav-open');
+  }
+
   toggle.addEventListener('click', () => {
-    toggle.classList.toggle('active');
-    menu.classList.toggle('active');
+    if (menu.classList.contains('active')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
   });
 
-  menu.querySelectorAll('.nav-menu__link').forEach(link => {
+  menu?.querySelectorAll('.nav-menu__link')?.forEach(link => {
     link.addEventListener('click', () => {
-      toggle.classList.remove('active');
-      menu.classList.remove('active');
+      closeMenu();
     });
   });
 
   document.addEventListener('click', (e) => {
-    if (menu.classList.contains('active') && !menu.contains(e.target) && !toggle.contains(e.target)) {
-      toggle.classList.remove('active');
-      menu.classList.remove('active');
+    if (menu?.classList.contains('active') && !menu.contains(e.target) && !toggle.contains(e.target)) {
+      closeMenu();
     }
   });
 }
@@ -265,6 +278,29 @@ function initProductModal() {
       const wine = wines.find(w => w.id === id);
       if (wine) { populateModal(wine); openModal(modal); }
     });
+  });
+
+  // Mobile / Touch: Open from tapping product card image or name directly
+  document.querySelectorAll('.product-card').forEach(card => {
+    const imgWrap = card.querySelector('.product-card__image-wrapper');
+    const nameEl = card.querySelector('.product-card__name');
+    const id = parseInt(card.dataset.id);
+
+    const handleCardOpen = (e) => {
+      if (e.target.closest('.add-to-cart-btn')) return;
+      e.preventDefault();
+      const wine = wines.find(w => w.id === id);
+      if (wine) { populateModal(wine); openModal(modal); }
+    };
+
+    if (imgWrap) {
+      imgWrap.style.cursor = 'pointer';
+      imgWrap.addEventListener('click', handleCardOpen);
+    }
+    if (nameEl) {
+      nameEl.style.cursor = 'pointer';
+      nameEl.addEventListener('click', handleCardOpen);
+    }
   });
 
   // Open from footer wine links
