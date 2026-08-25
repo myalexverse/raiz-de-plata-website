@@ -7,6 +7,7 @@
 const wines = [
   {
     id: 1, name: 'Semillón 2023', type: 'blanco', typeName: 'Blanco',
+    variantId: 45382735560886,
     varietal: '100% Semillón', vintage: '2023', alcohol: '12.1%', aging: null,
     vineyard: 'Viñedo Martínez', location: 'Fresnillo, Zacatecas',
     price: '$400', numericPrice: 400, image: 'images/wine-semillon.jpg',
@@ -17,6 +18,7 @@ const wines = [
   },
   {
     id: 2, name: 'Rosé 2023', type: 'rosado', typeName: 'Rosado',
+    variantId: 45382735528118,
     varietal: '56% Syrah · 44% Cariñan', vintage: '2023', alcohol: '12.0%', aging: null,
     vineyard: 'Viñedo Martínez / Valle de Barranquillas', location: 'Fresnillo / Luis Moya, Zacatecas',
     price: '$450', numericPrice: 450, image: 'images/wine-rose.jpg',
@@ -27,6 +29,7 @@ const wines = [
   },
   {
     id: 3, name: 'L.V.O. 2022', type: 'tinto', typeName: 'Tinto',
+    variantId: 45382735495350,
     varietal: '40% Tempranillo · 40% Cariñan · 20% Nebbiolo', vintage: '2022', alcohol: '11.5%',
     aging: '11 meses en barrica de roble francés y americano',
     vineyard: 'Viñedo Valle de Barranquillas', location: 'Luis Moya, Zacatecas',
@@ -38,6 +41,7 @@ const wines = [
   },
   {
     id: 4, name: 'Syrah 2021', type: 'tinto', typeName: 'Tinto',
+    variantId: 45382735462582,
     varietal: '100% Syrah', vintage: '2021', alcohol: '13.0%',
     aging: '14 meses en barrica de roble francés',
     vineyard: 'Viñedo Valle de Barranquillas', location: 'Luis Moya, Zacatecas',
@@ -49,6 +53,7 @@ const wines = [
   },
   {
     id: 5, name: 'Cabernet Sauvignon 2020', type: 'tinto', typeName: 'Tinto',
+    variantId: 45382735429814,
     varietal: '100% Cabernet Sauvignon', vintage: '2020', alcohol: '12.1%',
     aging: '14 meses en barrica de roble francés',
     vineyard: 'Viñedo Valle de Barranquillas', location: 'Luis Moya, Zacatecas',
@@ -60,6 +65,7 @@ const wines = [
   },
   {
     id: 6, name: 'Cosecha Tardía 2025', type: 'dulce', typeName: 'Cosecha Tardía',
+    variantId: 45382735593654,
     varietal: '70% Sauvignon Blanc · 30% Semillón', vintage: '2025', alcohol: '10.2%', aging: null,
     vineyard: 'Viñedo Valle de Barranquillas', location: 'Luis Moya, Zacatecas',
     price: '$400', numericPrice: 400, image: 'images/wine-cosecha-tardia.jpg',
@@ -386,7 +392,14 @@ function closeModal(modal) {
 // ═══ 8. CART SYSTEM ════════════════════════════════════════════════
 function initCart() {
   // Cart button in nav
-  document.getElementById('cart-btn')?.addEventListener('click', openCartSidebar);
+  document.getElementById('cart-btn')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    openCartSidebar();
+  });
+  document.getElementById('cart-icon-bubble')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    openCartSidebar();
+  });
 
   // Close cart
   document.getElementById('cart-close')?.addEventListener('click', closeCartSidebar);
@@ -413,18 +426,38 @@ function initCart() {
     });
   });
 
+  // Native Shopify Checkout
+  document.getElementById('shopify-checkout')?.addEventListener('click', checkoutShopify);
+
   // Checkout via WhatsApp
   document.getElementById('cart-checkout')?.addEventListener('click', checkoutWhatsApp);
 }
 
 function addToCart(wine) {
+  // Resolve real image from the DOM card or fallback to public URL
+  const card = document.querySelector(`.product-card[data-id="${wine.id}"]`);
+  const imgEl = card?.querySelector('.product-card__image');
+  const realImage = imgEl?.src || `https://myalexverse.github.io/raiz-de-plata-website/${wine.image}`;
+
   const existing = cart.find(item => item.id === wine.id);
   if (existing) {
     existing.qty += 1;
+    existing.image = realImage;
   } else {
-    cart.push({ ...wine, qty: 1 });
+    cart.push({ ...wine, image: realImage, qty: 1 });
   }
   updateCartUI();
+}
+
+function changeQuantity(wineId, delta) {
+  const item = cart.find(i => i.id === wineId);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) {
+    removeFromCart(wineId);
+  } else {
+    updateCartUI();
+  }
 }
 
 function removeFromCart(wineId) {
@@ -441,44 +474,59 @@ function updateCartUI() {
 
   // Count badge
   const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
-  countEl.textContent = totalItems;
-  countEl.style.display = totalItems > 0 ? 'flex' : 'none';
+  if (countEl) {
+    countEl.textContent = totalItems;
+    countEl.style.display = totalItems > 0 ? 'flex' : 'none';
+  }
 
   // Items list
   if (cart.length === 0) {
-    emptyEl.style.display = '';
-    footerEl.style.display = 'none';
-    // Remove cart item elements
-    itemsEl.querySelectorAll('.cart-item').forEach(el => el.remove());
+    if (emptyEl) emptyEl.style.display = '';
+    if (footerEl) footerEl.style.display = 'none';
+    itemsEl?.querySelectorAll('.cart-item').forEach(el => el.remove());
     return;
   }
 
-  emptyEl.style.display = 'none';
-  footerEl.style.display = '';
+  if (emptyEl) emptyEl.style.display = 'none';
+  if (footerEl) footerEl.style.display = '';
 
   // Remove old items
-  itemsEl.querySelectorAll('.cart-item').forEach(el => el.remove());
+  itemsEl?.querySelectorAll('.cart-item').forEach(el => el.remove());
 
   // Add items
   cart.forEach(item => {
     const div = document.createElement('div');
     div.className = 'cart-item';
     div.innerHTML = `
-      <img src="${item.image}" alt="${item.name}" class="cart-item__image">
+      <img src="${item.image}" alt="${item.name}" class="cart-item__image" onerror="this.src='https://myalexverse.github.io/raiz-de-plata-website/images/wine-cabernet.jpg'">
       <div class="cart-item__info">
         <p class="cart-item__name">${item.name}</p>
         <p class="cart-item__varietal">${item.varietal}</p>
-        <p class="cart-item__price">${item.price} MXN × ${item.qty}</p>
+        <div class="cart-item__price-qty">
+          <span class="cart-item__price">${item.price} MXN</span>
+          <div class="cart-item__qty-controls">
+            <button class="qty-btn qty-btn--minus" data-id="${item.id}" aria-label="Disminuir cantidad">−</button>
+            <span class="qty-count">${item.qty}</span>
+            <button class="qty-btn qty-btn--plus" data-id="${item.id}" aria-label="Aumentar cantidad">+</button>
+          </div>
+        </div>
       </div>
-      <button class="cart-item__remove" data-id="${item.id}">Eliminar</button>
+      <button class="cart-item__remove" data-id="${item.id}" aria-label="Eliminar producto" title="Eliminar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
     `;
+    div.querySelector('.qty-btn--minus').addEventListener('click', () => changeQuantity(item.id, -1));
+    div.querySelector('.qty-btn--plus').addEventListener('click', () => changeQuantity(item.id, 1));
     div.querySelector('.cart-item__remove').addEventListener('click', () => removeFromCart(item.id));
     itemsEl.appendChild(div);
   });
 
   // Total
   const total = cart.reduce((sum, item) => sum + (item.numericPrice * item.qty), 0);
-  totalEl.textContent = `$${total.toLocaleString()} MXN`;
+  if (totalEl) totalEl.textContent = `$${total.toLocaleString()} MXN`;
 }
 
 function openCartSidebar() {
@@ -491,7 +539,42 @@ function closeCartSidebar() {
   document.body.style.overflow = '';
 }
 
-// ═══ 9. WHATSAPP CHECKOUT ══════════════════════════════════════════
+// ═══ 9. SHOPIFY & WHATSAPP CHECKOUT ════════════════════════════════
+async function checkoutShopify() {
+  if (cart.length === 0) return;
+  const btn = document.getElementById('shopify-checkout');
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = '<span style="display:inline-block;animation:spin 1s linear infinite;">⏳</span> Conectando con Checkout...';
+  }
+
+  try {
+    // Si estamos en entorno Shopify con Ajax Cart API
+    await fetch('/cart/clear.js', { method: 'POST' });
+    const itemsToAdd = cart.map(item => ({
+      id: item.variantId || 45382735429814,
+      quantity: item.qty
+    }));
+
+    const res = await fetch('/cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ items: itemsToAdd })
+    });
+
+    if (res.ok) {
+      window.location.href = '/checkout';
+      return;
+    }
+  } catch (err) {
+    console.log('Shopify API fallback:', err);
+  }
+
+  // Fallback seguro mediante permalink directo a la tienda en vivo
+  const permalinkItems = cart.map(item => `${item.variantId || 45382735429814}:${item.qty}`).join(',');
+  window.location.href = `https://raiz-de-plata-2.myshopify.com/cart/${permalinkItems}`;
+}
+
 function checkoutWhatsApp() {
   if (cart.length === 0) return;
 
