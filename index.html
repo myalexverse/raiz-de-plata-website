@@ -497,55 +497,113 @@
     </div>
 
     <!-- ═══════════════════════════════════════════ -->
+    <!-- ═══════════════════════════════════════════ -->
     <!-- VIÑEDOS                                     -->
     <!-- ═══════════════════════════════════════════ -->
-    <section id="vinedos" class="section vinedos">
-        <div class="vinedos__bg" style="background-image: url('images/vineyard-landscape.jpg');"></div>
-        <div class="vinedos__overlay"></div>
-        <div class="container vinedos__content">
-            <div class="section__header animate-on-scroll">
-                <span class="section__label section__label--light">Nuestro Terroir</span>
-                <h2 class="section__title section__title--light">Viñedos de Zacatecas</h2>
+    <section id="vinedos" class="vinedos-section" style="position:relative;overflow:hidden;padding:8rem 0 9rem;">
+        <div class="vinedos__bg-wrapper">
+            <img src="images/vinedos-bg-hd.jpg" alt="Viñedos de Altura — Raíz de Plata" class="vinedos__bg-img" loading="lazy">
+            <div class="vinedos__bg-overlay"></div>
+        </div>
+
+        <div class="container" style="position:relative;z-index:2;">
+            <div class="section__header text-center animate-on-scroll">
+                <span class="vinedos__tagline">TERROIR DE ALTURA · ZACATECAS</span>
+                <h2 class="section__title vinedos__title">Nuestros Viñedos</h2>
                 <div class="section__divider"></div>
-                <p class="section__subtitle section__subtitle--light">Donde el sol, el suelo y la altitud crean un terroir único en México</p>
+                <p class="section__subtitle vinedos__subtitle">Dos terruños excepcionales de altura que forjan el carácter, la mineralidad y la elegancia de nuestras etiquetas.</p>
             </div>
+            
             <div class="vinedos__grid">
-                <div class="vinedo-card animate-on-scroll" data-delay="200">
-                    <div class="vinedo-card__icon">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                        </svg>
+                <!-- Card 1: Viñedo Martínez -->
+                <div class="vinedo-card animate-on-scroll" data-delay="100">
+                    <div class="vinedo-card__glow"></div>
+                    <div class="vinedo-card__header">
+                        <div class="vinedo-card__badge-altitude">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 22h20L12 2z"/></svg>
+                            2,150 msnm
+                        </div>
+                        <div class="vinedo-card__icon-wrap">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
                     </div>
-                    <h3 class="vinedo-card__name">Viñedo Martínez</h3>
-                    <p class="vinedo-card__location">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                        Fresnillo, Zacatecas
-                    </p>
-                    <p class="vinedo-card__desc">Ubicado en el corazón de Fresnillo, este viñedo se distingue por sus suelos minerales y su microclima ideal para variedades blancas y rosadas. Aquí nacen nuestro Semillón y parte de nuestro Rosé.</p>
-                    <div class="vinedo-card__grapes">
-                        <span class="vinedo-card__grape">Semillón</span>
-                        <span class="vinedo-card__grape">Syrah</span>
-                        <span class="vinedo-card__grape">Cariñan</span>
+
+                    <div class="vinedo-card__body">
+                        <span class="vinedo-card__region">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            Fresnillo, Zacatecas
+                        </span>
+                        <h3 class="vinedo-card__name">Viñedo Martínez</h3>
+                        <p class="vinedo-card__vocacion">Cuna de Blancos Expresivos y Rosados Finos</p>
+
+                        <p class="vinedo-card__desc">Suelos con alto contenido mineral calcáreo y notable amplitud térmica diurna. La pureza de su microclima otorga a las uvas una frescura vibrante, acidez equilibrada y una elegante nitidez aromática frutal y floral.</p>
+
+                        <div class="vinedo-card__section-label">VARIETALES CULTIVADOS</div>
+                        <div class="vinedo-card__grapes">
+                            <span class="vinedo-card__grape" title="Variedad insignia blanca">🍇 Semillón</span>
+                            <span class="vinedo-card__grape" title="Aporte de frutos rojos y frescura">🍇 Syrah</span>
+                            <span class="vinedo-card__grape" title="Estructura y mineralidad">🍇 Cariñan</span>
+                        </div>
+
+                        <div class="vinedo-card__footer">
+                            <div class="vinedo-card__wines-label">
+                                <span>Etiquetas de este origen:</span>
+                                <strong>Semillón 2023 · Rosé 2023</strong>
+                            </div>
+                            <a href="#vinos" class="vinedo-card__btn">
+                                Ver Vinos
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="vinedo-card animate-on-scroll" data-delay="400">
-                    <div class="vinedo-card__icon">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                        </svg>
+
+                <!-- Card 2: Viñedo Valle de Barranquillas -->
+                <div class="vinedo-card animate-on-scroll" data-delay="300">
+                    <div class="vinedo-card__glow"></div>
+                    <div class="vinedo-card__header">
+                        <div class="vinedo-card__badge-altitude">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 22h20L12 2z"/></svg>
+                            2,020 msnm
+                        </div>
+                        <div class="vinedo-card__icon-wrap">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
                     </div>
-                    <h3 class="vinedo-card__name">Viñedo Valle de Barranquillas</h3>
-                    <p class="vinedo-card__location">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                        Luis Moya, Zacatecas
-                    </p>
-                    <p class="vinedo-card__desc">En el valle de Barranquillas, la altitud y la amplitud térmica crean condiciones excepcionales para tintos de gran estructura. Hogar de nuestros Syrah, Cabernet Sauvignon, Nebbiolo y nuestro blend L.V.O.</p>
-                    <div class="vinedo-card__grapes">
-                        <span class="vinedo-card__grape">Tempranillo</span>
-                        <span class="vinedo-card__grape">Nebbiolo</span>
-                        <span class="vinedo-card__grape">Cabernet Sauvignon</span>
-                        <span class="vinedo-card__grape">Syrah</span>
-                        <span class="vinedo-card__grape">Sauvignon Blanc</span>
+
+                    <div class="vinedo-card__body">
+                        <span class="vinedo-card__region">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            Luis Moya, Zacatecas
+                        </span>
+                        <h3 class="vinedo-card__name">Valle de Barranquillas</h3>
+                        <p class="vinedo-card__vocacion">Potencia, Concentración y Tintos de Guarda</p>
+
+                        <p class="vinedo-card__desc">Ubicado en un valle de gran altitud protegido por la sierra, con suelos franco-arcillosos y noches frías. Brinda una maduración pausada que maximiza la concentración polifenólica, taninos aterciopelados y elegancia de guarda.</p>
+
+                        <div class="vinedo-card__section-label">VARIETALES CULTIVADOS</div>
+                        <div class="vinedo-card__grapes">
+                            <span class="vinedo-card__grape">🍇 Tempranillo</span>
+                            <span class="vinedo-card__grape">🍇 Cabernet Sauvignon</span>
+                            <span class="vinedo-card__grape">🍇 Syrah</span>
+                            <span class="vinedo-card__grape">🍇 Nebbiolo</span>
+                            <span class="vinedo-card__grape">🍇 Sauvignon Blanc</span>
+                        </div>
+
+                        <div class="vinedo-card__footer">
+                            <div class="vinedo-card__wines-label">
+                                <span>Etiquetas de este origen:</span>
+                                <strong>Cabernet Sauvignon · Syrah · L.V.O. · Cosecha Tardía</strong>
+                            </div>
+                            <a href="#vinos" class="vinedo-card__btn">
+                                Ver Vinos
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
