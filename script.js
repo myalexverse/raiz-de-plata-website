@@ -391,19 +391,61 @@ function closeModal(modal) {
 
 // ═══ 8. CART SYSTEM ════════════════════════════════════════════════
 function initCart() {
+  const cartSidebar = document.getElementById('cart-sidebar');
+  const cartPanel = cartSidebar?.querySelector('.cart-sidebar__panel');
+  const cartOverlay = cartSidebar?.querySelector('.cart-sidebar__overlay');
+
   // Cart button in nav
   document.getElementById('cart-btn')?.addEventListener('click', (e) => {
     e.preventDefault();
-    openCartSidebar();
+    e.stopPropagation();
+    toggleCartSidebar();
   });
   document.getElementById('cart-icon-bubble')?.addEventListener('click', (e) => {
     e.preventDefault();
-    openCartSidebar();
+    e.stopPropagation();
+    toggleCartSidebar();
   });
 
-  // Close cart
-  document.getElementById('cart-close')?.addEventListener('click', closeCartSidebar);
-  document.querySelector('.cart-sidebar__overlay')?.addEventListener('click', closeCartSidebar);
+  // Close cart on close button click
+  document.getElementById('cart-close')?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    closeCartSidebar();
+  });
+
+  // Close cart when clicking or tapping on the overlay
+  if (cartOverlay) {
+    cartOverlay.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeCartSidebar();
+    });
+    cartOverlay.addEventListener('touchstart', (e) => {
+      e.stopPropagation();
+      closeCartSidebar();
+    }, { passive: true });
+  }
+
+  // Close cart when clicking anywhere outside the cart panel on the entire page
+  document.addEventListener('click', (e) => {
+    if (!cartSidebar || !cartSidebar.classList.contains('active')) return;
+    if (cartPanel && !cartPanel.contains(e.target) && !e.target.closest('#cart-btn, #cart-icon-bubble, .add-to-cart-btn, #modal-add-cart')) {
+      closeCartSidebar();
+    }
+  });
+
+  // Close cart on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && cartSidebar?.classList.contains('active')) {
+      closeCartSidebar();
+    }
+  });
+
+  // Close cart when clicking on any navigation or section link
+  document.querySelectorAll('a[href^="#"], .navbar__link, .mobile-nav__link').forEach(link => {
+    link.addEventListener('click', () => {
+      closeCartSidebar();
+    });
+  });
 
   // Add to cart from product cards
   document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
@@ -531,12 +573,21 @@ function updateCartUI() {
 
 function openCartSidebar() {
   document.getElementById('cart-sidebar')?.classList.add('active');
-  document.body.style.overflow = 'hidden';
+  document.body.classList.add('cart-open');
 }
 
 function closeCartSidebar() {
   document.getElementById('cart-sidebar')?.classList.remove('active');
-  document.body.style.overflow = '';
+  document.body.classList.remove('cart-open');
+}
+
+function toggleCartSidebar() {
+  const cartEl = document.getElementById('cart-sidebar');
+  if (cartEl?.classList.contains('active')) {
+    closeCartSidebar();
+  } else {
+    openCartSidebar();
+  }
 }
 
 // ═══ 9. SHOPIFY & WHATSAPP CHECKOUT ════════════════════════════════
