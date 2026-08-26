@@ -578,12 +578,31 @@ async function checkoutShopify() {
 function checkoutWhatsApp() {
   if (cart.length === 0) return;
 
-  let message = '🍷 *Pedido — Raíz de Plata*\n\n';
-  cart.forEach(item => {
-    message += `• ${item.name} (${item.varietal}) — ${item.price} MXN × ${item.qty}\n`;
+  const totalBottles = cart.reduce((sum, item) => sum + item.qty, 0);
+  const totalAmount = cart.reduce((sum, item) => sum + (item.numericPrice * item.qty), 0);
+
+  let message = `🍷 *SOLICITUD DE PEDIDO — RAÍZ DE PLATA*\n`;
+  message += `_De Haro · Bodega y Viñedos_\n\n`;
+  message += `Hola, estuve explorando su tienda en línea y me gustaría solicitar el pedido de las siguientes botellas:\n\n`;
+
+  cart.forEach((item, index) => {
+    const itemSubtotal = item.numericPrice * item.qty;
+    message += `*${index + 1}. ${item.name}*\n`;
+    message += `   • Varietal: ${item.varietal}\n`;
+    message += `   • Cantidad: ${item.qty} ${item.qty === 1 ? 'botella' : 'botellas'}\n`;
+    message += `   • Precio: ${item.price} MXN c/u (Subtotal: $${itemSubtotal.toLocaleString()} MXN)\n\n`;
   });
-  const total = cart.reduce((sum, item) => sum + (item.numericPrice * item.qty), 0);
-  message += `\n💰 *Total: $${total.toLocaleString()} MXN*\n\n¡Gracias!`;
+
+  message += `──────────────\n`;
+  message += `📦 *Total de botellas:* ${totalBottles} ${totalBottles === 1 ? 'pieza' : 'piezas'}\n`;
+  message += `💰 *Subtotal estimado:* $${totalAmount.toLocaleString()} MXN\n`;
+  message += `──────────────\n\n`;
+  message += `¿Me podrían apoyar con la cotización del envío a mi domicilio y los datos para realizar el pago / transferencia?\n\n`;
+  message += `📍 *Mis datos de entrega:*\n`;
+  message += `• Nombre completo:\n`;
+  message += `• Ciudad y Estado:\n`;
+  message += `• Código Postal (C.P.):\n\n`;
+  message += `¡Quedo a la espera de su confirmación, muchas gracias!`;
 
   const encoded = encodeURIComponent(message);
   window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`, '_blank');
