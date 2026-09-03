@@ -425,12 +425,48 @@ function initCart() {
     }, { passive: true });
   }
 
-  // Close cart when clicking anywhere outside the cart panel on the entire page
+  // Robust Event Delegation for +, -, and Remove in cart
+  const cartItemsContainer = document.getElementById('cart-items');
+  if (cartItemsContainer) {
+    cartItemsContainer.addEventListener('click', (e) => {
+      const minusBtn = e.target.closest('.qty-btn--minus');
+      const plusBtn = e.target.closest('.qty-btn--plus');
+      const removeBtn = e.target.closest('.cart-item__remove');
+
+      if (minusBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        const id = parseInt(minusBtn.dataset.id, 10);
+        changeQuantity(id, -1);
+        return;
+      }
+
+      if (plusBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        const id = parseInt(plusBtn.dataset.id, 10);
+        changeQuantity(id, 1);
+        return;
+      }
+
+      if (removeBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        const id = parseInt(removeBtn.dataset.id, 10);
+        removeFromCart(id);
+        return;
+      }
+    });
+  }
+
+  // Close cart when clicking anywhere truly outside the cart panel on the entire page
   document.addEventListener('click', (e) => {
     if (!cartSidebar || !cartSidebar.classList.contains('active')) return;
-    if (cartPanel && !cartPanel.contains(e.target) && !e.target.closest('#cart-btn, #cart-icon-bubble, .add-to-cart-btn, #modal-add-cart')) {
-      closeCartSidebar();
+    // If the clicked element is no longer in the DOM or is inside the cart drawer/triggers, do not close
+    if (!e.target.isConnected || e.target.closest('#cart-sidebar, #cart-btn, #cart-icon-bubble, .add-to-cart-btn, #modal-add-cart, .qty-btn, .cart-item__remove')) {
+      return;
     }
+    closeCartSidebar();
   });
 
   // Close cart on Escape key
@@ -450,9 +486,10 @@ function initCart() {
   // Add to cart from product cards
   document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
+      e.preventDefault();
       e.stopPropagation();
-      const id = parseInt(btn.dataset.wineId);
-      const wine = wines.find(w => w.id === id);
+      const id = parseInt(btn.dataset.wineId, 10);
+      const wine = wines.find(w => Number(w.id) === id);
       if (wine) {
         addToCart(wine);
         // Brief animation on button
@@ -481,7 +518,7 @@ function addToCart(wine) {
   const imgEl = card?.querySelector('.product-card__image');
   const realImage = imgEl?.src || `https://myalexverse.github.io/raiz-de-plata-website/${wine.image}`;
 
-  const existing = cart.find(item => item.id === wine.id);
+  const existing = cart.find(item => Number(item.id) === Number(wine.id));
   if (existing) {
     existing.qty += 1;
     existing.image = realImage;
@@ -492,18 +529,20 @@ function addToCart(wine) {
 }
 
 function changeQuantity(wineId, delta) {
-  const item = cart.find(i => i.id === wineId);
+  const numericId = Number(wineId);
+  const item = cart.find(i => Number(i.id) === numericId);
   if (!item) return;
   item.qty += delta;
   if (item.qty <= 0) {
-    removeFromCart(wineId);
+    removeFromCart(numericId);
   } else {
     updateCartUI();
   }
 }
 
 function removeFromCart(wineId) {
-  cart = cart.filter(item => item.id !== wineId);
+  const numericId = Number(wineId);
+  cart = cart.filter(item => Number(item.id) !== numericId);
   updateCartUI();
 }
 
@@ -539,6 +578,7 @@ function updateCartUI() {
   cart.forEach(item => {
     const div = document.createElement('div');
     div.className = 'cart-item';
+    div.dataset.id = item.id;
     div.innerHTML = `
       <img src="${item.image}" alt="${item.name}" class="cart-item__image" onerror="this.src='https://myalexverse.github.io/raiz-de-plata-website/images/wine-cabernet.jpg'">
       <div class="cart-item__info">
@@ -547,22 +587,19 @@ function updateCartUI() {
         <div class="cart-item__price-qty">
           <span class="cart-item__price">${item.price} MXN</span>
           <div class="cart-item__qty-controls">
-            <button class="qty-btn qty-btn--minus" data-id="${item.id}" aria-label="Disminuir cantidad">−</button>
+            <button type="button" class="qty-btn qty-btn--minus" data-id="${item.id}" aria-label="Disminuir cantidad">−</button>
             <span class="qty-count">${item.qty}</span>
-            <button class="qty-btn qty-btn--plus" data-id="${item.id}" aria-label="Aumentar cantidad">+</button>
+            <button type="button" class="qty-btn qty-btn--plus" data-id="${item.id}" aria-label="Aumentar cantidad">+</button>
           </div>
         </div>
       </div>
-      <button class="cart-item__remove" data-id="${item.id}" aria-label="Eliminar producto" title="Eliminar">
+      <button type="button" class="cart-item__remove" data-id="${item.id}" aria-label="Eliminar producto" title="Eliminar">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
       </button>
     `;
-    div.querySelector('.qty-btn--minus').addEventListener('click', () => changeQuantity(item.id, -1));
-    div.querySelector('.qty-btn--plus').addEventListener('click', () => changeQuantity(item.id, 1));
-    div.querySelector('.cart-item__remove').addEventListener('click', () => removeFromCart(item.id));
     itemsEl.appendChild(div);
   });
 

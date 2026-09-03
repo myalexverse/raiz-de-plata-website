@@ -1062,37 +1062,48 @@ body.modal-open .navbar {
   font-weight: 600;
 }
 .cart-item__qty-controls {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(197, 160, 89, 0.25);
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(197, 160, 89, 0.35);
+  border-radius: 6px;
   overflow: hidden;
+  user-select: none;
 }
 .qty-btn {
-  background: none;
+  background: transparent;
   border: none;
-  color: var(--color-text);
-  font-size: 1.1rem;
-  width: 26px;
-  height: 26px;
+  color: var(--color-gold);
+  font-size: 1.15rem;
+  font-weight: 700;
+  width: 32px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  transition: all 0.2s ease;
   user-select: none;
+  touch-action: manipulation;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
 }
 .qty-btn:hover {
-  background: rgba(197, 160, 89, 0.2);
-  color: var(--color-gold);
+  background: rgba(197, 160, 89, 0.25);
+  color: #ffffff;
+}
+.qty-btn:active {
+  background: var(--color-gold);
+  color: #120e10;
+  transform: scale(0.92);
 }
 .qty-count {
-  font-size: 0.85rem;
-  font-weight: 600;
-  min-width: 22px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  min-width: 26px;
   text-align: center;
-  color: #fff;
+  color: #ffffff;
+  pointer-events: none;
 }
 .cart-item__remove {
   background: none;
